@@ -2,55 +2,41 @@ import {
     Refine,
     GitHubBanner, 
     WelcomePage,
-    Authenticated, 
 } from '@refinedev/core';
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { AuthPage,ErrorComponent
-,useNotificationProvider
-,ThemedLayoutV2
-,ThemedSiderV2} from '@refinedev/antd';
+import { useNotificationProvider} from '@refinedev/antd';
 import "@refinedev/antd/dist/reset.css";
 
-import dataProvider, { GraphQLClient, liveProvider } from "@refinedev/nestjs-query";
-import { createClient } from "graphql-ws";
+import {authProvider, dataProvider, liveProvider } from './providers';
+import { Home, ForgotPassword, Login, Register } from "./pages";
+
+
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier,} from '@refinedev/react-router-v6';
 import { App as AntdApp } from "antd"
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
-import routerBindings, { NavigateToResource, CatchAllNavigate, UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
-import { ColorModeContextProvider } from "./contexts/color-mode";
-import { Header } from "./components/header";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
-import { ForgotPassword } from "./pages/forgotPassword";
-import { authProvider } from "./authProvider";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const API_URL = "https://api.nestjs-query.refine.dev/graphql";
-const WS_URL = "wss://api.nestjs-query.refine.dev/graphql";
 
-const gqlClient = new GraphQLClient(API_URL);
-const wsClient = createClient({ url: WS_URL });
 
+// const API_URL = "https://api.nestjs-query.refine.dev/graphql";
+// const WS_URL = "wss://api.nestjs-query.refine.dev/graphql";
 
 
 
 function App() {
-    
-
-    
-    
     return (
         <BrowserRouter>
         <GitHubBanner />
         <RefineKbarProvider>
-            <ColorModeContextProvider>
 <AntdApp>
             <DevtoolsProvider>
-                <Refine dataProvider={dataProvider(gqlClient)}
-liveProvider={liveProvider(wsClient)}
-notificationProvider={useNotificationProvider}
-routerProvider={routerBindings}
-authProvider={authProvider} 
+                <Refine 
+                dataProvider={dataProvider}
+                liveProvider={liveProvider}
+                notificationProvider={useNotificationProvider}
+                routerProvider={routerBindings}
+                authProvider={authProvider} 
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,
@@ -63,6 +49,10 @@ authProvider={authProvider}
 
                         <Routes>
                             <Route index element={<WelcomePage />} />
+                            <Route index element={<Home />} />
+                            <Route path='/register' element={<Register />} />
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/forgotpassword' element={<ForgotPassword />} />
                         </Routes>
                     <RefineKbar />
                     <UnsavedChangesNotifier />
@@ -71,10 +61,9 @@ authProvider={authProvider}
             <DevtoolsPanel />
             </DevtoolsProvider>
             </AntdApp>
-</ColorModeContextProvider>
         </RefineKbarProvider>
         </BrowserRouter>
-      );
-};
+);
+}
 
 export default App;
