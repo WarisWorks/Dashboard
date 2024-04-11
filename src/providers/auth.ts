@@ -1,5 +1,6 @@
 import { AuthProvider } from "@refinedev/core";
 
+import { User } from "@/graphql/schema.types";
 
 import { API_URL, dataProvider } from "./data";
 
@@ -7,7 +8,7 @@ import { API_URL, dataProvider } from "./data";
  * For demo purposes and to make it easier to test the app, you can use the following credentials:
  */
 export const authCredentials = {
-  email: "demo@demo.com",
+  email: "michael.scott@dundermifflin.com",
   password: "demodemo",
 };
 
@@ -102,9 +103,13 @@ export const authProvider: AuthProvider = {
       const { data } = await dataProvider.custom<{ me: User }>({
         url: API_URL,
         method: "post",
-        headers: accessToken? {Authorization: `Bearer ${accessToken}`,
-            } : {},
-        meta: {rawQuery: `
+        headers: accessToken
+          ? {
+              Authorization: `Bearer ${accessToken}`,
+            }
+          : {},
+        meta: {
+          rawQuery: `
                     query Me {
                         me {
                             id,
@@ -120,6 +125,7 @@ export const authProvider: AuthProvider = {
         },
       });
 
+      return data.me;
     } catch (error) {
       return undefined;
     }
