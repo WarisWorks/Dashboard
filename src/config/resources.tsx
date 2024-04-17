@@ -11,13 +11,13 @@ export const resources: IResourceItem[] = [
         }
     },
     {
-      name: 'department',
-      list: '/department',
-      show: '/department/:id',
-      create: '/department/new',
-      edit: 'department/edit/:id',
+      name: 'companies',
+      list: '/companies',
+      show: '/companies/:id',
+      create: '/companies/new',
+      edit: 'companies/edit/:id',
       meta: {
-        label: 'Department',
+        label: 'Companies',
         icon: <ClusterOutlined />
       }
     },
