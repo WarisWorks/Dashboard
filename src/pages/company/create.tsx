@@ -58,6 +58,7 @@ const Create = () => {
                 <Input placeholder="Please enter a company name" />
 
             </Form.Item>
+            
              <Form.Item
              label="Sales Owner"
              name="salesOwnerId"
@@ -78,7 +79,6 @@ const Create = () => {
                     }))   ?? []
                 }
                  />
-
             </Form.Item>
         </Form>
 
