@@ -15,7 +15,7 @@ export const CompanyList = ({children} : React.PropsWithChildren) => {
   const {tableProps, filters } = useTable<
     GetFieldsFromList<CompaniesListQuery>,
     HttpError,
-    GetFieldsFromList<CompaniesListQuery>,
+    GetFieldsFromList<CompaniesListQuery>
   >({
     resource: 'companies',
     onSearch: (values) => {
