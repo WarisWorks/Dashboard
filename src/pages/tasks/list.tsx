@@ -6,8 +6,7 @@ import KanbanColumn from '@/components/tasks/kanban/column'
 import KanbanItem from '@/components/tasks/kanban/item'
 import { UPDATE_TASK_STAGE_MUTATION } from '@/graphql/mutations'
 import { TASK_STAGES_QUERY, TASKS_QUERY } from '@/graphql/queries'
-import { TaskStage } from '@/graphql/schema.types'
-import { TasksQuery } from '@/graphql/types'
+import { TasksQuery, TaskStagesQuery } from '@/graphql/types'
 import { DragEndEvent } from '@dnd-kit/core'
 import {useList, useNavigation, useUpdate} from '@refinedev/core'
 import { GetFieldsFromList } from '@refinedev/nestjs-query'
@@ -15,6 +14,9 @@ import React from 'react'
 
 const List = ({children}: React.PropsWithChildren) => {
     const {replace } = useNavigation();
+
+type Task = GetFieldsFromList<TasksQuery>
+type TaskStage = GetFieldsFromList<TaskStagesQuery> & {tasks : Task[]}
 
   const {data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
     resource: 'taskStages',
