@@ -168,11 +168,13 @@ const ProjectCard = ({id, title, dueDate, users}: ProjectCardProps) =>
                         marginRight: 0,
                     }}
                     >
-                        {users.map((user) => {
-                            <Tooltip key={user.id} title={user.name}>
-                             <CustomAvatar name={user.name} src={user.avatarUrl} />
-                            </Tooltip>
-                        })}
+                         {users.map((user) => {
+                return (
+                  <Tooltip key={user.id} title={user.name}>
+                    <CustomAvatar name={user.name} src={user.avatarUrl} />
+                  </Tooltip>
+                );
+                       })}
                     </Space>
                 )}
             </div>
