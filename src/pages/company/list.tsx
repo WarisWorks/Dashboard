@@ -18,15 +18,13 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
         GetFieldsFromList<CompaniesListQuery>
     >({
         resource: 'companies',
-        onSearch: (values) => {
-            return [
-                {
-                    field: 'name',
-                    operator: 'contains',
-                    value: values.name,
-                },
-            ];
-        },
+        onSearch: (values) => [
+            {
+                field: 'name',
+                operator: 'contains',
+                value: values.name,
+            },
+        ],
         pagination: {
             pageSize: 12,
         },
@@ -79,10 +77,10 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                         ...tableProps.pagination,
                     }}
                 >
+                    {/* Column: Company Title */}
                     <Table.Column<Company>
                         dataIndex="name"
                         title="Company Title"
-                        defaultFilteredValue={getDefaultFilter('id', filters)}
                         filterIcon={<SearchOutlined />}
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
@@ -95,7 +93,9 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                                 <Text style={{ whiteSpace: 'nowrap' }}>{record.name}</Text>
                             </Space>
                         )}
-                    /> {/* Closing angle bracket added here */}
+                    />
+
+                    {/* Column: Open Deals Amount */}
                     <Table.Column<Company>
                         dataIndex="totalRevenue"
                         title="Open deals amount"
@@ -104,7 +104,9 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                                 {currencyNumber(company?.dealsAggregate?.[0].sum?.value || 0)}
                             </Text>
                         )}
-                    /> {/* Closing angle bracket added here */}
+                    />
+
+                    {/* Column: Actions */}
                     <Table.Column<Company>
                         dataIndex="id"
                         title="Actions"
@@ -115,7 +117,7 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                                 <DeleteButton hideText size="small" recordItemId={value} />
                             </Space>
                         )}
-                    /> 
+                    />
                 </Table>
             </List>
             {children}
