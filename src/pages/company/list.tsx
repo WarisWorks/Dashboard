@@ -89,6 +89,7 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                             </Space>
                         )}
                     />
+
                     <Table.Column<Company>
                         key="totalRevenue"
                         dataIndex="totalRevenue"
