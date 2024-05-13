@@ -2,7 +2,7 @@ import CustomAvatar from '@/components/custom-avatar';
 import { COMPANIES_LIST_QUERY } from '@/graphql/queries';
 import { SearchOutlined } from '@ant-design/icons';
 import { CreateButton, EditButton, DeleteButton, FilterDropdown, List, useTable } from '@refinedev/antd';
-import { getDefaultFilter, HttpError, useGo } from '@refinedev/core';
+import {  HttpError, useGo } from '@refinedev/core';
 import { Input, Space, Table } from 'antd';
 import { Text } from '@/components/text';
 import { Company } from '@/graphql/schema.types';
@@ -63,7 +63,7 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                                     action: 'create',
                                 },
                                 options: {
-                                    keepQuery: true,
+                                    keepQuery: true
                                 },
                                 type: 'replace',
                             })
@@ -77,7 +77,6 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                         ...tableProps.pagination,
                     }}
                 >
-                    {/* Column: Company Title */}
                     <Table.Column<Company>
                         dataIndex="name"
                         title="Company Title"
@@ -94,8 +93,6 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                             </Space>
                         )}
                     />
-
-                    {/* Column: Open Deals Amount */}
                     <Table.Column<Company>
                         dataIndex="totalRevenue"
                         title="Open deals amount"
@@ -106,8 +103,7 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                         )}
                     />
 
-                    {/* Column: Actions */}
-                    <Table.Column<Company>
+<Table.Column<Company>
                         dataIndex="id"
                         title="Actions"
                         fixed="right"
@@ -125,4 +121,4 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
     );
 };
 
-// export default CompanyList
+export default CompanyList

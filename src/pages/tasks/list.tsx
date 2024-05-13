@@ -142,8 +142,7 @@ type TaskStage = GetFieldsFromList<TaskStagesQuery> & {tasks : Task[]}
                  id={column.id}
                  title={column.title}
                  count={column.tasks.length}
-                 onAddClick={() => handleAddCard({stageId: column.id})}
-                  >
+                 onAddClick={() => handleAddCard({ stageId: column.id })} description={undefined}                  >
                     {!isLoading && column.tasks.map((task) =>(
                         <KanbanItem key={task.id} id={task.id} data={task}>
                             <ProjectCardMemo
