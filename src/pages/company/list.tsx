@@ -2,7 +2,7 @@ import CustomAvatar from '@/components/custom-avatar';
 import { COMPANIES_LIST_QUERY } from '@/graphql/queries';
 import { SearchOutlined } from '@ant-design/icons';
 import { CreateButton, EditButton, DeleteButton, FilterDropdown, List, useTable } from '@refinedev/antd';
-import {  HttpError, useGo } from '@refinedev/core';
+import { HttpError, useGo } from '@refinedev/core';
 import { Input, Space, Table } from 'antd';
 import { Text } from '@/components/text';
 import { Company } from '@/graphql/schema.types';
@@ -71,13 +71,9 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                     />
                 )}
             >
-                <Table
-                    {...tableProps}
-                    pagination={{
-                        ...tableProps.pagination,
-                    }}
-                >
+                <Table {...tableProps}>
                     <Table.Column<Company>
+                        key="name"
                         dataIndex="name"
                         title="Company Title"
                         filterIcon={<SearchOutlined />}
@@ -94,6 +90,7 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                         )}
                     />
                     <Table.Column<Company>
+                        key="totalRevenue"
                         dataIndex="totalRevenue"
                         title="Open deals amount"
                         render={(value, company) => (
@@ -102,8 +99,8 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                             </Text>
                         )}
                     />
-
-<Table.Column<Company>
+                    <Table.Column<Company>
+                        key="actions"
                         dataIndex="id"
                         title="Actions"
                         fixed="right"
@@ -121,4 +118,4 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
     );
 };
 
-export default CompanyList
+export default CompanyList;
