@@ -1,13 +1,12 @@
-import { GraphQLFormattedError } from "graphql";
+import type { GraphQLFormattedError } from "graphql";
 
 type Error = {
     message: string;
     statusCode: string;
-}
+};
 
 const customFetch = async(url: string, options: RequestInit) => {
     const accessToken = localStorage.getItem('access_token');
-
     const headers = options.headers as Record<string, string>;
 
     return await fetch(url, {
@@ -37,8 +36,8 @@ const getGraphQLError = (body: Record<"errors", GraphQLFormattedError[] | undefi
 
         return {
             message: messages || JSON.stringify(errors),
-            statusCode: code || 500
-        }
+            statusCode: code || 500,
+        };
     }
 
     return null;

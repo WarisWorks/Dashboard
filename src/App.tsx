@@ -28,8 +28,8 @@ import TasksEditPage from './pages/tasks/edit';
 
 
 
-// const API_URL = "https://api.nestjs-query.refine.dev/graphql";
-// const WS_URL = "wss://api.nestjs-query.refine.dev/graphql";
+const API_URL = "https://api.nestjs-query.refine.dev/graphql";
+const WS_URL = "wss://api.nestjs-query.refine.dev/graphql";
 
 
 
